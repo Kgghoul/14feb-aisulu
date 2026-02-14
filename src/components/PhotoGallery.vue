@@ -41,6 +41,9 @@
           <img :src="mh.photo" alt="" class="mini-heart-img" />
         </div>
       </div>
+      <button class="next-btn" @click="scrollNext">
+         дальше
+      </button>
     </div>
   </section>
 </template>
@@ -78,6 +81,12 @@ const goTo = (i) => {
 
 const nextPhoto = () => {
   currentIndex.value = (currentIndex.value + 1) % photos.length
+}
+
+const scrollNext = () => {
+  // Use scrollIntoView to navigate to the love letter section
+  const section = document.getElementById('letter')
+  if (section) section.scrollIntoView({ behavior: 'smooth' })
 }
 
 const resetInterval = () => {
@@ -266,5 +275,27 @@ onUnmounted(() => {
   .mini-heart {
     display: none;
   }
+}
+
+
+.next-btn {
+  margin-top: 40px;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.next-btn:hover {
+  background: var(--gold);
+  color: var(--dark-wine);
+  transform: translateY(-2px);
 }
 </style>

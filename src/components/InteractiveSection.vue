@@ -29,6 +29,9 @@
 
       <!-- Explosion Hearts -->
       <div class="explosion-container" ref="explosionRef"></div>
+      <button class="next-btn" @click="scrollNext">
+        дальше
+      </button>
     </div>
   </section>
 </template>
@@ -120,22 +123,29 @@ const switchFormat = () => {
   const container = explosionRef.value
   if (!container) return
 
-  const emojis = ['❤️', '💕', '💖', '💗', '💓', '💘', '💝', '🌹', '💐', '✨', '🥰', '😘']
-
-  for (let i = 0; i < 30; i++) {
+  // Create 40 hearts
+  for (let i = 0; i < 40; i++) {
     const heart = document.createElement('div')
-    heart.className = 'explosion-heart'
-    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)]
-    heart.style.setProperty('--x', (Math.random() - 0.5) * 600 + 'px')
-    heart.style.setProperty('--y', (Math.random() - 0.5) * 600 + 'px')
-    heart.style.setProperty('--r', Math.random() * 720 - 360 + 'deg')
-    heart.style.setProperty('--s', 0.5 + Math.random() * 1.5)
-    heart.style.fontSize = 20 + Math.random() * 30 + 'px'
-    heart.style.animationDelay = Math.random() * 0.3 + 's'
+    heart.classList.add('explosion-heart')
+    heart.innerHTML = '❤️'
+    heart.style.left = '50%'
+    heart.style.top = '50%'
+    const angle = Math.random() * Math.PI * 2
+    const velocity = 100 + Math.random() * 200
+    const tx = Math.cos(angle) * velocity
+    const ty = Math.sin(angle) * velocity
+    heart.style.setProperty('--tx', `${tx}px`)
+    heart.style.setProperty('--ty', `${ty}px`)
+    heart.style.animation = `explode 1s ease-out forwards`
+    
     container.appendChild(heart)
-
-    setTimeout(() => heart.remove(), 2000)
+    setTimeout(() => heart.remove(), 1000)
   }
+}
+
+const scrollNext = () => {
+  const section = document.getElementById('footer')
+  if (section) section.scrollIntoView({ behavior: 'smooth' })
 }
 
 onMounted(() => {
@@ -324,6 +334,27 @@ onUnmounted(() => {
   .love-btn {
     padding: 15px 35px;
     font-size: 1rem;
+    white-space: nowrap;
   }
+}
+
+.next-btn {
+  margin-top: 40px;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+  background: var(--gold);
+  color: var(--dark-wine);
+  transform: translateY(-2px);
 }
 </style>

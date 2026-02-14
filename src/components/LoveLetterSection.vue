@@ -13,6 +13,11 @@
         <div class="letter-signature">
           <p class="letter-closing">твой каримузя 💕</p>
         </div>
+        <div class="letter-actions">
+          <button class="next-btn" @click="scrollNext">
+            дальше
+          </button>
+        </div>
         <div class="letter-ornament letter-ornament-bottom">❦</div>
       </div>
     </div>
@@ -23,10 +28,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const paragraphs = [
-  'ⲧы ⳅⲏᥲᥱɯь, ᥴⲕ𐔖᥈ьⲕ𐔖 ρᥲⳅ ⲃ ⲇᥱⲏь я ⲇ𐔤ⲙᥲю 𐔖 ⲧᥱⳝᥱ? ⳝᥱᥴⲕ𐔖ⲏᥱɥⲏ𐔖 ⲙⲏ𐔖𐔏𐔖. ⲕᥲⲿⲇᥲя ⲙыᥴ᥈ь 𐔖 ⲧᥱⳝᥱ ⲏᥲᥒ𐔖᥈ⲏяᥱⲧ ⲙ𐔖ᥱ ᥴᥱρⲇцᥱ ⲧᥱᥒ᥈𐔖ⲙ υ ρᥲⲇ𐔖ᥴⲧью.',
+  'ⲧы ⳅⲏᥲᥱɯь, ᥴⲕ𐔖᥈ьⲕ𐔖 ρᥲⳅ ⲃ ⲇᥱⲏь я ⲇ𐔤ⲙᥲю 𐔖 ⲧᥱⳝᥱ? ⳝᥱᥴⲕ𐔖ⲏᥱɥⲏ𐔖 ⲙⲏ𐔖𐔖. ⲕᥲⲿⲇᥲя ⲙыᥴ᥈ь 𐔖 ⲧᥱⳝᥱ ⲏᥲᥒ𐔖᥈ⲏяᥱⲧ ⲙ𐔖ᥱ ᥴᥱρⲇцᥱ ⲧᥱᥒ᥈𐔖ⲙ υ ρᥲⲇ𐔖ᥴⲧью.',
   'ⲧы ⲙ𐔖ύ ᥈𐔤ɥυⲕ ᥴⲃᥱⲧᥲ ⲃ ᥴᥲⲙыᥱ ⲧᥱⲙⲏыᥱ ᥒᥱρυ𐔖ⲇы. ρяⲇ𐔖ⲙ ᥴ ⲧ𐔖ⳝ𐔖ύ я ɥ𐔤ⲃᥴⲧⲃ𐔤ю, ᥴᥱⳝя ᥴᥲⲙыⲙ ᥈юⳝυⲙыⲙ.',
   'я ⳝ᥈ᥲ𐔏𐔖ⲇᥲρᥱⲏ ᥴ𐔤ⲇьⳝᥱ ⳅᥲ ⲕᥲⲿⲇыύ ⲇᥱⲏь, ᥒρ𐔖ⲃᥱⲇᥱⲏⲏыύ ᥴ ⲧ𐔖ⳝ𐔖ύ.',
-  '𐔖ⳝᥱպᥲю, ɥⲧ𐔖 ᥴⲕ𐔖ρ𐔖 ⲙы ⳝ𐔤ⲇᥱⲙ ⲃⲙᥱᥴⲧᥱ ᥴ᥈𐔤ɯᥲⲧь ᥴᥱρᥱ𐔏𐔤 ᥒ𐔖 ⲃᥱɥᥱρᥲⲙ υ ᥒυⲧь ⳅᥱⳝρ𐔤 υ᥈υ ⲕ𐔤ɯᥲⲧь ᥒυⲕᥲⳝ𐔤, ⲇᥲ ᥒ𐔖ⲭ ɥⲧ𐔖 ⲕ𐔤ɯᥲⲧь 𐔏᥈ᥲⲃⲏ𐔖ᥱ ɥⲧ𐔖 ⲃⲙᥱᥴⲧᥱ 🌹',
+  '𐔖ⳝᥱպᥲю, ɥⲧ𐔖 ᥴⲕ𐔖ρ𐔖 ⲙы ⳝ𐔤ⲇᥱⲙ ⲃⲙᥱᥴⲧᥱ ᥴ᥈𐔤ɯᥲⲧь ᥴᥱρᥱ𐔏𐔤 ᥒ𐔖 ⲃᥱɥᥱρᥲⲙ υ ᥒυⲧь ⳅᥱⳝρ𐔤 υ᥈υ ⲕ𐔤ɯᥲⲧь ᥒυⲕᥲⳝ𐔤, ⲇᥲ ᥒ𐔖ⲭ ɥⲧ𐔖 ⲕ𐔤ɯᥲⲧь 𐔖᥈ᥲⲃⲏ𐔖ᥱ ɥⲧ𐔖 ⲃⲙᥱᥴⲧᥱ 🌹',
 ]
 
 const displayedText = ref([])
@@ -72,6 +77,11 @@ onMounted(() => {
 onUnmounted(() => {
   if (observer) observer.disconnect()
 })
+
+const scrollNext = () => {
+  const section = document.getElementById('interactive')
+  if (section) section.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <style scoped>
@@ -199,5 +209,35 @@ onUnmounted(() => {
   .letter-paragraph {
     font-size: 1rem;
   }
+}
+.letter-paragraph {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-indent: 2rem;
+}
+
+.letter-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.next-btn {
+  background: none;
+  border: 1px solid var(--deep-rose);
+  color: var(--deep-rose);
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+  background: var(--deep-rose);
+  color: var(--warm-white);
+  transform: translateY(-2px);
 }
 </style>
