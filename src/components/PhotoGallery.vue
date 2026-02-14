@@ -5,28 +5,16 @@
     <div class="gallery-stage">
       <!-- Main heart photo -->
       <div class="heart-container">
-        <svg class="heart-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="heartClip" clipPathUnits="userSpaceOnUse">
-              <path d="M160 280 C160 280 10 200 10 120 C10 60 60 20 110 20 C135 20 155 35 160 55 C165 35 185 20 210 20 C260 20 310 60 310 120 C310 200 160 280 160 280Z" />
-            </clipPath>
-          </defs>
-          <g clip-path="url(#heartClip)">
-             <foreignObject width="320" height="320" x="0" y="0">
-                <div class="heart-content">
-                  <transition name="photo-fade" mode="out-in">
-                    <img
-                      :src="photos[currentIndex]"
-                      :key="currentIndex"
-                      class="heart-photo"
-                      alt="Наше фото"
-                    />
-                  </transition>
-                </div>
-             </foreignObject>
-          </g>
-        </svg>
-
+        <div class="heart-shape">
+          <transition name="photo-fade" mode="out-in">
+            <img
+              :src="photos[currentIndex]"
+              :key="currentIndex"
+              class="heart-photo"
+              alt="Наше фото"
+            />
+          </transition>
+        </div>
         <!-- Glow behind heart -->
         <div class="heart-glow"></div>
       </div>
@@ -167,27 +155,21 @@ onUnmounted(() => {
 }
 
 /* Heart shape via clip-path */
-/* Heart shape via SVG */
 .heart-container {
   position: relative;
   width: 320px;
-  max-width: 90vw; /* Responsive width */
-  aspect-ratio: 320 / 300;
-  height: auto;
+  height: 300px;
   margin-bottom: 30px;
+}
+
+.heart-shape {
+  width: 100%;
+  height: 100%;
+  clip-path: path('M160 280 C160 280 10 200 10 120 C10 60 60 20 110 20 C135 20 155 35 160 55 C165 35 185 20 210 20 C260 20 310 60 310 120 C310 200 160 280 160 280Z');
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
   filter: drop-shadow(0 10px 30px rgba(139, 10, 58, 0.5));
-}
-
-.heart-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.heart-content {
-  width: 100%;
-  height: 100%;
 }
 
 .heart-photo {
