@@ -49,13 +49,13 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const photos = [
-  '/photos/photo_5226610818961575977_y.jpg',
-  '/photos/photo_5226610818961576138_y.jpg',
-  '/photos/photo_5226610818961576152_y.jpg',
-  '/photos/photo_5226610818961576157_y.jpg',
-  '/photos/photo_5226610818961576158_y.jpg',
-  '/photos/photo_5226610818961576159_x.jpg',
-  '/photos/photo_5226610818961576172_y.jpg',
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961575977_y.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576138_y.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576152_y.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576157_y.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576158_y.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576159_x.jpg`,
+  `${import.meta.env.BASE_URL}photos/photo_5226610818961576172_y.jpg`,
 ]
 
 const currentIndex = ref(0)
