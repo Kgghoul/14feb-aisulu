@@ -86,7 +86,7 @@ const nextPhoto = () => {
 const scrollNext = () => {
   // Use scrollIntoView to navigate to the love letter section
   const section = document.getElementById('letter')
-  if (section) section.scrollIntoView({ behavior: 'smooth' })
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
 
 const resetInterval = () => {
