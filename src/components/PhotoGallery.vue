@@ -48,14 +48,22 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
+import photo1 from '../assets/photos/photo_5226610818961575977_y.jpg'
+import photo2 from '../assets/photos/photo_5226610818961576138_y.jpg'
+import photo3 from '../assets/photos/photo_5226610818961576152_y.jpg'
+import photo4 from '../assets/photos/photo_5226610818961576157_y.jpg'
+import photo5 from '../assets/photos/photo_5226610818961576158_y.jpg'
+import photo6 from '../assets/photos/photo_5226610818961576159_x.jpg'
+import photo7 from '../assets/photos/photo_5226610818961576172_y.jpg'
+
 const photos = [
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961575977_y.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576138_y.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576152_y.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576157_y.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576158_y.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576159_x.jpg`,
-  `${import.meta.env.BASE_URL}photos/photo_5226610818961576172_y.jpg`,
+  photo1,
+  photo2,
+  photo3,
+  photo4,
+  photo5,
+  photo6,
+  photo7,
 ]
 
 const currentIndex = ref(0)
