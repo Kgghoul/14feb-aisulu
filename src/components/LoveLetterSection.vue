@@ -105,6 +105,23 @@ const scrollNext = () => {
     0 0 0 1px rgba(139, 10, 58, 0.1),
     inset 0 0 80px rgba(255, 200, 150, 0.2);
   color: #3D1A1A;
+  max-height: 70vh; /* Limit height to 70% of viewport */
+  overflow-y: auto; /* Allow internal scrolling if content is too long */
+  
+  /* Custom Scrollbar for the letter */
+  scrollbar-width: thin;
+  scrollbar-color: var(--deep-rose) transparent;
+}
+
+.letter-paper::-webkit-scrollbar {
+  width: 6px;
+}
+.letter-paper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.letter-paper::-webkit-scrollbar-thumb {
+  background-color: var(--deep-rose);
+  border-radius: 20px;
 }
 
 .letter-paper::before {
